@@ -65,41 +65,39 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ],
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    child: buttonIcon(
-                      Icon: Icon(Icons.home_outlined, color: Colors.white),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  child: buttonIcon(
+                    Icon: Icon(Icons.home_outlined, color: Colors.white),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/account'),
+                  child: buttonIcon(
+                    Icon: Icon(Icons.person_2_outlined, color: Colors.white),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/cart'),
+                  child: buttonIcon(
+                    Icon: Icon(
+                      Icons.shopping_cart_outlined,
+                      color: Colors.white,
                     ),
                   ),
-                  InkWell(
-                    onTap: () => Navigator.pushNamed(context, '/account'),
-                    child: buttonIcon(
-                      Icon: Icon(Icons.person_2_outlined, color: Colors.white),
+                ),
+                InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/notif'),
+                  child: buttonIcon(
+                    Icon: Icon(
+                      Icons.notification_important_outlined,
+                      color: Colors.white,
                     ),
                   ),
-                  InkWell(
-                    onTap: () => Navigator.pushNamed(context, '/cart'),
-                    child: buttonIcon(
-                      Icon: Icon(
-                        Icons.shopping_cart_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => Navigator.pushNamed(context, '/notif'),
-                    child: buttonIcon(
-                      Icon: Icon(
-                        Icons.notification_important_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             Container(
               height: screenHeight * 0.50,

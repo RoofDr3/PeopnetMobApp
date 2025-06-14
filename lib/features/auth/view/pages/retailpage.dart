@@ -29,7 +29,6 @@ class _RetailPageState extends ConsumerState<RetailPage> {
   @override
   void initState() {
     super.initState();
-    // Generate random ID saat halaman dibuka
     final randomId = (Random().nextInt(900000) + 100000).toString();
     idController.text = randomId;
   }
@@ -45,7 +44,7 @@ class _RetailPageState extends ConsumerState<RetailPage> {
 
   void _addService() {
     final service = DummyService(
-      idPelanggan: idController.text, // ambil dari field (sudah random)
+      idPelanggan: idController.text,
       nama: nameController.text,
       jenisLayanan: 'Retail',
       kapasitas: selectedKapasitas ?? '',
@@ -77,7 +76,7 @@ class _RetailPageState extends ConsumerState<RetailPage> {
             TextField(
               controller: idController,
               decoration: const InputDecoration(labelText: 'ID Pelanggan'),
-              readOnly: true, // agar user tidak bisa edit
+              readOnly: true,
             ),
             TextField(
               controller: nameController,

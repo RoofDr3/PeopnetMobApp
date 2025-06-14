@@ -30,7 +30,6 @@ class _DedicatedpageState extends ConsumerState<Dedicatedpage> {
   @override
   void initState() {
     super.initState();
-    // Generate random ID saat halaman dibuka
     final randomId = (Random().nextInt(900000) + 100000).toString();
     idController.text = randomId;
   }
@@ -46,7 +45,7 @@ class _DedicatedpageState extends ConsumerState<Dedicatedpage> {
 
   void _addService() {
     final service = DummyService(
-      idPelanggan: idController.text, // ambil dari field (sudah random)
+      idPelanggan: idController.text,
       nama: nameController.text,
       jenisLayanan: 'Dedicated',
       kapasitas: selectedKapasitas ?? '',
@@ -78,7 +77,7 @@ class _DedicatedpageState extends ConsumerState<Dedicatedpage> {
             TextField(
               controller: idController,
               decoration: const InputDecoration(labelText: 'ID Pelanggan'),
-              readOnly: true, // agar user tidak bisa edit
+              readOnly: true,
             ),
             TextField(
               controller: nameController,

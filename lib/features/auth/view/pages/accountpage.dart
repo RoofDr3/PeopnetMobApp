@@ -21,7 +21,6 @@ class _AccountpageState extends ConsumerState<Accountpage> {
   @override
   void initState() {
     super.initState();
-    // Mengisi controller dari data user yang sedang login
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final user = ref.read(currentUserProvider);
       if (user != null) {
@@ -75,7 +74,7 @@ class _AccountpageState extends ConsumerState<Accountpage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(currentUserProvider);
+    ref.watch(currentUserProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(
