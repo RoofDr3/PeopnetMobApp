@@ -32,7 +32,6 @@ class MainApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/account': (context) => const Accountpage(),
         '/cart': (context) => const CartPage(),
-        '/notif': (context) => const Notifpage(),
         '/retail': (context) => const RetailPage(),
         '/soho': (context) => const Sohopage(),
         '/dedicated': (context) => const Dedicatedpage(),

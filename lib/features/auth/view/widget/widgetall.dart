@@ -9,13 +9,10 @@ import '../pages/registerpage.dart';
 class Customfield extends StatelessWidget {
   final String LabelText;
   final TextEditingController controller;
-  final bool isObscureText;
   const Customfield({
     super.key,
     required this.LabelText,
     required this.controller,
-    this.isObscureText = false,
-    required bool obscureText,
     required String? Function(String? value) validator,
   });
 
@@ -27,7 +24,6 @@ class Customfield extends StatelessWidget {
         labelText: LabelText,
         labelStyle: const TextStyle(fontFamily: 'Lexendregular', fontSize: 12),
       ),
-      obscureText: isObscureText,
     );
   }
 }

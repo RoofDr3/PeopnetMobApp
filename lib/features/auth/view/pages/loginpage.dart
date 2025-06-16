@@ -33,18 +33,29 @@ class _LoginpageState extends ConsumerState<Loginpage> {
 
   void _login() {
     final users = ref.read(userListProvider);
-    final user = users.firstWhere(
-      (u) =>
-          u.username == nameController.text &&
-          u.password == passwordController.text,
-      //orElse: () => null,
-    );
-    ref.read(currentUserProvider.notifier).state = user;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
-    );
+    try {
+      final user = users.firstWhere(
+        (u) =>
+            u.username == nameController.text &&
+            u.password == passwordController.text,
+      );
+      ref.read(currentUserProvider.notifier).state = user;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } catch (e) {
+      setState(() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Username atau password salah / tidak terdaftar!"),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      });
     }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,13 +83,11 @@ class _LoginpageState extends ConsumerState<Loginpage> {
                 Customfield(
                   LabelText: "username",
                   controller: nameController,
-                  obscureText: false,
                   validator: _defaultValidator,
                 ),
                 Customfield(
                   LabelText: "password",
                   controller: passwordController,
-                  obscureText: true,
                   validator: _defaultValidator,
                 ),
                 SizedBox(height: 30),

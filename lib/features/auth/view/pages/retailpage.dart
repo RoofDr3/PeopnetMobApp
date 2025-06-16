@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:peopnet/core/data/static_data.dart';
 import 'package:peopnet/core/providers/static_provider.dart';
+import 'package:peopnet/core/theme/app_pallete.dart';
 
 class RetailPage extends ConsumerStatefulWidget {
   const RetailPage({super.key});
@@ -43,6 +44,19 @@ class _RetailPageState extends ConsumerState<RetailPage> {
   }
 
   void _addService() {
+    if (nameController.text.isEmpty ||
+        alamatController.text.isEmpty ||
+        selectedKapasitas == null ||
+        koordinatController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Isi semua data dengan benar!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
     final service = DummyService(
       idPelanggan: idController.text,
       nama: nameController.text,
@@ -59,7 +73,8 @@ class _RetailPageState extends ConsumerState<RetailPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Layanan Retail berhasil ditambahkan ke Cart'),
+        content: Text('Layanan berhasil ditambahkan ke Cart'),
+        backgroundColor: Colors.green,
       ),
     );
     Navigator.pushNamed(context, '/cart');
@@ -68,44 +83,177 @@ class _RetailPageState extends ConsumerState<RetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tambah Layanan Retail')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            TextField(
-              controller: idController,
-              decoration: const InputDecoration(labelText: 'ID Pelanggan'),
-              readOnly: true,
+      backgroundColor: Pallete.backgroundColor,
+      appBar: AppBar(
+        title: const Text(
+          'Daftar Layanan Retail',
+          style: TextStyle(fontFamily: 'Lexendbold', color: Colors.white),
+        ),
+        backgroundColor: Pallete.buttonColor,
+        centerTitle: true,
+        elevation: 2,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 28),
+          child: Card(
+            elevation: 7,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
             ),
-            TextField(
-              controller: nameController,
-              decoration: const InputDecoration(labelText: 'Nama'),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Center(
+                    child: CircleAvatar(
+                      backgroundColor: Pallete.buttonColor,
+                      radius: 35,
+                      child: const Icon(
+                        Icons.home_filled,
+                        color: Colors.white,
+                        size: 38,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Center(
+                    child: Text(
+                      "Retail",
+                      style: TextStyle(
+                        fontFamily: "Lexendbold",
+                        fontSize: 20,
+                        color: Pallete.buttonColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Center(
+                    child: Text(
+                      "Solusi internet rumah tangga, cepat & terjangkau",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: "Lexendregular",
+                        fontSize: 13,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ),
+                  const Divider(height: 26, thickness: 1.1),
+                  const SizedBox(height: 4),
+
+                  _inputLabel("ID Pelanggan"),
+                  TextField(
+                    controller: idController,
+                    decoration: const InputDecoration(
+                      hintText: 'Otomatis',
+                      prefixIcon: Icon(Icons.badge),
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                    readOnly: true,
+                  ),
+                  const SizedBox(height: 14),
+
+                  _inputLabel("Nama"),
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      hintText: 'Nama Tempat',
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+
+                  _inputLabel("Alamat"),
+                  TextField(
+                    controller: alamatController,
+                    decoration: const InputDecoration(
+                      hintText: 'Alamat Lengkap',
+                      prefixIcon: Icon(Icons.location_on),
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+
+                  _inputLabel("Kapasitas"),
+                  DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.speed),
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                    value: selectedKapasitas,
+                    items: kapasitasOptions
+                        .map(
+                          (k) => DropdownMenuItem(
+                            value: k,
+                            child: Text(
+                              k,
+                              style: const TextStyle(
+                                fontFamily: 'Lexendregular',
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (val) => setState(() => selectedKapasitas = val),
+                    hint: const Text("Pilih kapasitas"),
+                  ),
+                  const SizedBox(height: 14),
+
+                  _inputLabel("Koordinat"),
+                  TextField(
+                    controller: koordinatController,
+                    decoration: const InputDecoration(
+                      hintText: 'Contoh: -7.123, 110.567',
+                      prefixIcon: Icon(Icons.map),
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+
+                  ElevatedButton.icon(
+                    onPressed: _addService,
+                    icon: const Icon(Icons.shopping_cart_checkout_rounded),
+                    label: const Text('Daftar'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Pallete.buttonColor,
+                      foregroundColor: Colors.white,
+                      elevation: 5,
+                      minimumSize: const Size.fromHeight(48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      textStyle: const TextStyle(
+                        fontFamily: 'Lexendbold',
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            TextField(
-              controller: alamatController,
-              decoration: const InputDecoration(labelText: 'Alamat'),
-            ),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Kapasitas'),
-              value: selectedKapasitas,
-              items: kapasitasOptions
-                  .map((k) => DropdownMenuItem(value: k, child: Text(k)))
-                  .toList(),
-              onChanged: (val) => setState(() => selectedKapasitas = val),
-            ),
-            TextField(
-              controller: koordinatController,
-              decoration: const InputDecoration(labelText: 'Koordinat'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _addService,
-              child: const Text('Tambah ke Cart'),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
+
+  Widget _inputLabel(String label) => Padding(
+    padding: const EdgeInsets.only(left: 2, bottom: 4),
+    child: Text(
+      label,
+      style: const TextStyle(
+        fontFamily: 'Lexendbold',
+        fontSize: 15,
+        color: Colors.black87,
+      ),
+    ),
+  );
 }

@@ -80,25 +80,21 @@ class _RegisterpageState extends ConsumerState<Registerpage> {
                 Customfield(
                   LabelText: "nama",
                   controller: nameController,
-                  obscureText: false,
                   validator: _defaultValidator,
                 ),
                 Customfield(
                   LabelText: "email",
                   controller: emailController,
-                  obscureText: false,
                   validator: _defaultValidator,
                 ),
                 Customfield(
                   LabelText: "alamat",
                   controller: alamatController,
-                  obscureText: false,
                   validator: _defaultValidator,
                 ),
                 Customfield(
                   LabelText: "password",
                   controller: passwordController,
-                  obscureText: false,
                   validator: _defaultValidator,
                 ),
                 SizedBox(height: 20),

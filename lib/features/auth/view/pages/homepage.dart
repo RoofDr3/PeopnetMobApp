@@ -37,7 +37,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       appBar: AppBar(
         title: Text(
           "Peopnet-Serve",
-          style: TextStyle(fontFamily: 'Lexendregular', color: Colors.white),
+          style: TextStyle(fontFamily: 'Lexendbold', color: Colors.white),
         ),
         backgroundColor: Pallete.buttonColor,
       ),
@@ -60,7 +60,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   SizedBox(width: 20),
                   Text(
                     user?.username ?? "Guest",
-                    style: TextStyle(fontFamily: 'Lexendregular'),
+                    style: TextStyle(fontFamily: 'Lexendbold', fontSize: 18),
                   ),
                 ],
               ),
@@ -89,12 +89,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () => Navigator.pushNamed(context, '/notif'),
+                  onTap: () => Navigator.pushNamed(context, '/'),
                   child: buttonIcon(
-                    Icon: Icon(
-                      Icons.notification_important_outlined,
-                      color: Colors.white,
-                    ),
+                    Icon: Icon(Icons.logout, color: Colors.white),
                   ),
                 ),
               ],
@@ -110,7 +107,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       child: viewCard(
                         color: Colors.green,
                         title: "RETAIL",
-                        desc: "Deskripsi Retail...",
+                        desc:
+                            "Layanan internet broadband yang ditujukan untuk kebutuhan rumah tangga atau pelanggan individu, dengan kecepatan stabil, harga terjangkau, dan proses instalasi yang mudah.",
                       ),
                     ),
                     InkWell(
@@ -118,7 +116,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       child: viewCard(
                         color: Colors.grey,
                         title: "SOHO",
-                        desc: "Deskripsi SOHO...",
+                        desc:
+                            "Layanan internet khusus untuk Small Office/Home Office (SOHO) yang membutuhkan koneksi lebih stabil dan cepat dibandingkan layanan rumahan, cocok untuk usaha kecil dan kantor skala kecil hingga menengah.",
                       ),
                     ),
                     InkWell(
@@ -126,7 +125,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       child: viewCard(
                         color: Colors.orange,
                         title: "DEDICATED",
-                        desc: "Deskripsi Dedicated...",
+                        desc:
+                            "Layanan internet premium dengan bandwidth simetris, kecepatan tinggi, dan jaminan SLA (Service Level Agreement), sangat cocok untuk perusahaan besar, kantor, atau bisnis yang membutuhkan koneksi internet tanpa gangguan dan prioritas layanan teknis.",
                       ),
                     ),
                   ],
