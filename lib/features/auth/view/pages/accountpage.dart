@@ -78,7 +78,7 @@ class _AccountpageState extends ConsumerState<Accountpage> {
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
         title: const Text(
-          "Akun Saya",
+          "Akun",
           style: TextStyle(fontFamily: 'Lexendbold', color: Colors.white),
         ),
         backgroundColor: Pallete.buttonColor,
@@ -182,7 +182,7 @@ class _AccountpageState extends ConsumerState<Accountpage> {
                       onPressed: _ubahProfile,
                       icon: const Icon(Icons.save, color: Colors.white),
                       label: const Text(
-                        "Simpan Perubahan",
+                        "Simpan",
                         style: TextStyle(
                           fontFamily: 'Lexendbold',
                           fontSize: 16,
