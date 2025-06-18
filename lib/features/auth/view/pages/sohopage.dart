@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:peopnet/core/data/static_data.dart';
 import 'package:peopnet/core/providers/static_provider.dart';
+import 'package:peopnet/core/providers/user_provider.dart';
 import 'package:peopnet/core/theme/app_pallete.dart';
 
 class Sohopage extends ConsumerStatefulWidget {
@@ -44,6 +45,16 @@ class _SohopageState extends ConsumerState<Sohopage> {
   }
 
   void _addService() {
+    final user = ref.read(currentUserProvider);
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Silakan login dulu!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
     if (nameController.text.isEmpty ||
         alamatController.text.isEmpty ||
         selectedKapasitas == null ||
@@ -64,6 +75,7 @@ class _SohopageState extends ConsumerState<Sohopage> {
       kapasitas: selectedKapasitas ?? '',
       alamat: alamatController.text,
       koordinat: koordinatController.text,
+      username: user.username,
     );
 
     ref.read(serviceListProvider.notifier).addService(service);

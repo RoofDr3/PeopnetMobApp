@@ -5,6 +5,8 @@ class DummyService {
   final String kapasitas;
   final String alamat;
   final String koordinat;
+  final String
+  username; // ← relasi user (atau: userId jika model user pakai id)
 
   DummyService({
     required this.idPelanggan,
@@ -13,6 +15,7 @@ class DummyService {
     required this.kapasitas,
     required this.alamat,
     required this.koordinat,
+    required this.username,
   });
 
   factory DummyService.fromJson(Map<String, dynamic> json) => DummyService(
@@ -22,6 +25,7 @@ class DummyService {
     kapasitas: json['kapasitas'] ?? '',
     alamat: json['alamat'] ?? '',
     koordinat: json['koordinat'] ?? '',
+    username: json['username'] ?? '',
   );
 
   Map<String, dynamic> toJson() => {
@@ -31,5 +35,6 @@ class DummyService {
     'kapasitas': kapasitas,
     'alamat': alamat,
     'koordinat': koordinat,
+    'username': username,
   };
 }
