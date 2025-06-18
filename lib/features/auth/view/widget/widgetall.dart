@@ -82,7 +82,7 @@ class buttonText extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return Registerpage();
+                  return RegisterPage();
                 },
               ),
             );

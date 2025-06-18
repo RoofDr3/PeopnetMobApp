@@ -1,34 +1,3 @@
-// Static data untuk dummy user dan layanan
-
-class DummyUser {
-  final String username;
-  final String password;
-  final String email;
-  final String alamat;
-
-  DummyUser({
-    required this.username,
-    required this.password,
-    required this.email,
-    required this.alamat,
-  });
-
-  // Tambahkan method copyWith berikut:
-  DummyUser copyWith({
-    String? username,
-    String? password,
-    String? email,
-    String? alamat,
-  }) {
-    return DummyUser(
-      username: username ?? this.username,
-      password: password ?? this.password,
-      email: email ?? this.email,
-      alamat: alamat ?? this.alamat,
-    );
-  }
-}
-
 class DummyService {
   final String idPelanggan;
   final String nama;
@@ -45,4 +14,22 @@ class DummyService {
     required this.alamat,
     required this.koordinat,
   });
+
+  factory DummyService.fromJson(Map<String, dynamic> json) => DummyService(
+    idPelanggan: json['idPelanggan'] ?? '',
+    nama: json['nama'] ?? '',
+    jenisLayanan: json['jenisLayanan'] ?? '',
+    kapasitas: json['kapasitas'] ?? '',
+    alamat: json['alamat'] ?? '',
+    koordinat: json['koordinat'] ?? '',
+  );
+
+  Map<String, dynamic> toJson() => {
+    'idPelanggan': idPelanggan,
+    'nama': nama,
+    'jenisLayanan': jenisLayanan,
+    'kapasitas': kapasitas,
+    'alamat': alamat,
+    'koordinat': koordinat,
+  };
 }

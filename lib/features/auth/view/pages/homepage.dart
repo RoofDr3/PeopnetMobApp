@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:peopnet/core/providers/static_provider.dart';
+import 'package:peopnet/core/providers/user_provider.dart';
 import '../../../../core/theme/app_pallete.dart';
 import '../widget/widgetall.dart';
 import 'accountpage.dart';

@@ -66,10 +66,7 @@ class _DedicatedpageState extends ConsumerState<Dedicatedpage> {
       koordinat: koordinatController.text,
     );
 
-    ref.read(serviceListProvider.notifier).state = [
-      ...ref.read(serviceListProvider),
-      service,
-    ];
+    ref.read(serviceListProvider.notifier).addService(service);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
