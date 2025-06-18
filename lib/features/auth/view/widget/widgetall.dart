@@ -9,21 +9,26 @@ import '../pages/registerpage.dart';
 class Customfield extends StatelessWidget {
   final String LabelText;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final bool obscureText;
+  final Widget? suffixIcon;
+
   const Customfield({
-    super.key,
     required this.LabelText,
     required this.controller,
-    required String? Function(String? value) validator,
+    this.validator,
+    this.obscureText = false,
+    this.suffixIcon,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: InputDecoration(
-        labelText: LabelText,
-        labelStyle: const TextStyle(fontFamily: 'Lexendregular', fontSize: 12),
-      ),
+      validator: validator,
+      obscureText: obscureText,
+      decoration: InputDecoration(labelText: LabelText, suffixIcon: suffixIcon),
     );
   }
 }

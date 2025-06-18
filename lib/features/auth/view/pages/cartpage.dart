@@ -33,6 +33,7 @@ class CartPage extends ConsumerWidget {
         return false;
       },
       child: Scaffold(
+        backgroundColor: Pallete.backgroundColor,
         appBar: AppBar(
           title: const Text(
             "Layanan",
@@ -71,7 +72,7 @@ class CartPage extends ConsumerWidget {
                     },
                     borderRadius: BorderRadius.circular(18),
                     child: Card(
-                      color: Pallete.gradient1.withOpacity(0.95),
+                      color: Colors.white,
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),

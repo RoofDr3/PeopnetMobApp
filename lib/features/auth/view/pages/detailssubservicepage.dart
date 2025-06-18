@@ -39,6 +39,7 @@ class DetailService extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
         title: const Text(
           "Detail Layanan",
